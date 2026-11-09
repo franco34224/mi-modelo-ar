@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mi modelo 3D en realidad aumentada</title>
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; padding: 18px; min-height: 100vh; background: #f3f4f6;
+      color: #202124; font-family: system-ui, sans-serif; display: grid; place-items: center; }
+    main { width: min(100%, 960px); padding: 18px; background: white; border-radius: 16px;
+      box-shadow: 0 8px 28px #00000012; }
+    h1 { font-size: 1.25rem; margin: 0 0 8px; }
+    p { color: #5f6368; line-height: 1.45; }
+    model-viewer { width: 100%; height: min(68vh, 620px); min-height: 340px;
+      background: #eef0f3; border-radius: 12px; }
+    #ar-button { position: absolute; right: 16px; bottom: 16px; border: 0; border-radius: 999px;
+      padding: 13px 18px; background: #202124; color: white; font-size: 15px; font-weight: 650; }
+    #status { font-size: .9rem; margin-bottom: 0; }
+    .error { color: #b3261e; font-weight: 650; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Mi modelo 3D</h1>
+    <p>Girá y acercá el modelo con los dedos. En un Android compatible, tocá el botón para verlo en tu espacio.</p>
+    <model-viewer id="viewer"
+      src="./model.glb"
+      alt="Modelo 3D del proyecto"
+      camera-controls
+      touch-action="pan-y"
+      shadow-intensity="1"
+      exposure="1"
+      ar
+      ar-modes="scene-viewer webxr"
+      ar-scale="auto"
+      ar-placement="floor"
+      loading="eager">
+      <button slot="ar-button" id="ar-button">Ver en mi espacio (AR)</button>
+    </model-viewer>
+    <p id="status">Cargando modelo…</p>
+  </main>
+  <script>
+    const viewer = document.querySelector('#viewer');
+    const status = document.querySelector('#status');
+    viewer.addEventListener('load', () => {
+      status.textContent = 'Modelo cargado. Tocá “Ver en mi espacio (AR)” desde tu Android.';
+      status.classList.remove('error');
+    });
+    viewer.addEventListener('error', () => {
+      status.textContent = 'No se pudo cargar model.glb. Verificá que el archivo esté junto a index.html.';
+      status.classList.add('error');
+    });
+  </script>
+</body>
+</html>
