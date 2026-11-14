@@ -1,9 +1,10 @@
+
 <!doctype html>
 <html lang="es">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Mi modelo 3D en realidad aumentada</title>
+  <title>BMW i1 M11 xDrive - Realidad Aumentada</title>
   <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
   <style>
     * { box-sizing: border-box; }
@@ -23,7 +24,7 @@
 </head>
 <body>
   <main>
-    <h1>Mi modelo 3D</h1>
+    <h1>BMW i1 M11 xDrive</h1>
     <p>Girá y acercá el modelo con los dedos. En un Android compatible, tocá el botón para verlo en tu espacio.</p>
     <model-viewer id="viewer"
       src="./model.glb"
@@ -45,7 +46,7 @@
     const viewer = document.querySelector('#viewer');
     const status = document.querySelector('#status');
     viewer.addEventListener('load', () => {
-      status.textContent = 'Modelo cargado. Tocá “Ver en mi espacio (AR)” desde tu Android.';
+      status.textContent = 'Longoboard cargado. Tocá "Ver en mi espacio (AR)" desde tu Android.';
       status.classList.remove('error');
     });
     viewer.addEventListener('error', () => {
@@ -55,3 +56,4 @@
   </script>
 </body>
 </html>
+
